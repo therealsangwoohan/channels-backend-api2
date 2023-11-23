@@ -2,14 +2,12 @@ package routes
 
 import (
 	"net/http"
-
-	"github.com/go-chi/chi/v5"
 )
 
-func SetMessageRoutes(router *chi.Mux) {
-	router.Get("/api/messages", getAllMessages)
+func (router *Router) SetMessageRoutes() {
+	router.ChiMux.Get("/api/messages", router.getAllMessages)
 }
 
-func getAllMessages(w http.ResponseWriter, r *http.Request) {
+func (router *Router) getAllMessages(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("inside getAllMessages"))
 }
