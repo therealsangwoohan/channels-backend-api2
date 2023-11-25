@@ -1,9 +1,11 @@
-package routes
+package handlers
 
 import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"github.com/therealsangwoohan/channels-backend-api2/database"
 )
 
 type Channel struct {
@@ -12,12 +14,8 @@ type Channel struct {
 	AdminID     string `json:"admin_id"`
 }
 
-func (router *Router) SetChannelRoutes() {
-	router.ChiMux.Get("/api/channels", router.getAllChannels)
-}
-
-func (router *Router) getAllChannels(w http.ResponseWriter, r *http.Request) {
-	rows, err := router.Database.Query("SELECT channel_id, channel_name, admin_id FROM channel")
+func GetAllChannels(w http.ResponseWriter, r *http.Request) {
+	rows, err := database.Database.Query("SELECT channel_id, channel_name, admin_id FROM channel")
 	if err != nil {
 		log.Fatal(err)
 	}
