@@ -11,5 +11,5 @@ import (
 func main() {
 	database.ConnectDB()
 	router := router.NewRouter()
-	http.ListenAndServe("127.0.0.1:8080", router)
+	http.ListenAndServe("127.0.0.1:4000", router)
 }

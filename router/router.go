@@ -8,6 +8,9 @@ import (
 func NewRouter() *chi.Mux {
 	router := chi.NewRouter()
 	router.Get("/api/channels", handlers.GetAllChannels)
+	router.Get("/api/channels/{id}", handlers.GetChannel)
+	router.Post("/api/channels", handlers.CreateChannel)
+
 	router.Get("/api/messages", handlers.GetAllMessages)
 	return router
 }
